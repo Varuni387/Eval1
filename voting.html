@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body
+        {
+            text-align: center;
+            background-color: rgb(215, 234, 182);
+        }
+        button
+        {
+            background-color: rgb(180, 209, 64);
+            border-radius: 50%;
+            padding: 5px;
+        }
+        .content
+        {
+            border:3px solid black;
+            padding: 10px;
+            margin-top: 10%;
+            display: inline-block;
+            background-color: rgb(213, 234, 119);
+        }
+    </style>
+    <script>
+        function calculateAge() {
+            var dob = document.getElementById("birthdate").value;
+            var today = new Date();
+            var birthDate = new Date(dob);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var monthDiff = today.getMonth() - birthDate.getMonth();
+
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) 
+            {
+                age--;
+            }
+            document.getElementById("age").innerHTML = "Your age is: " + age;
+            var messageElement = document.getElementById("message");
+            if (age >= 18) 
+            {
+                messageElement.innerHTML = "Congrats you are " + age + " eligible to vote";
+            } 
+            else
+            {
+                messageElement.innerHTML = "Sorry you are " + age + " hence ineligible to vote";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="content">
+    <form name="Voting">
+        <h1>Checking for the eligibility for Voting</h1>
+        <label for="name">Enter your name:</label>
+        <input type="Text" name="name" id="name" value="">
+        <br><br>
+        <p>Enter your gender:</p>
+        <input type="radio" name="gender" id="male" value="Male"><label for="male">Male</label>
+        <input type="radio" name="gender" id="female" value="Female"><label for="female">Female</label>
+        <br><br>
+        <label for="birthdate">Birthdate:</label>
+        <input type="date" id="birthdate" name="birthdate">
+        <br><br>
+        <label for="btn">Check if you can vote or not</label>
+        <button type="button" onclick="calculateAge()">Check</button>
+        <p id="age"></p>
+        <div id="message"></div>
+    </form>
+</div>
+</body>
+</html>
